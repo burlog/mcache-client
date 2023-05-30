@@ -17,6 +17,7 @@
  *                  First draft.
  */
 
+#include <cstdint>
 #include <vector>
 #include <limits>
 #include <zlib.h>
@@ -86,4 +87,3 @@ uncompress(const std::string &data,
 } // namespace zlib
 } // namespace proto
 } // namespace mc
-
