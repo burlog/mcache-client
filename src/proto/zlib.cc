@@ -87,4 +87,3 @@ uncompress(const std::string &data,
 } // namespace zlib
 } // namespace proto
 } // namespace mc
-
