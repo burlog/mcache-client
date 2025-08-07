@@ -83,11 +83,11 @@ int main(int argc, char **argv) {
         client.set("three", (char)3);
         client.set("three", (wchar_t)3);
         client.set("three", (unsigned char)3);
-        client.set("three", (signed int)3);
+        client.set("three", 3);
         client.set("three", (bool)3);
         client.set("three", (int8_t)3);
         client.set("three", (int16_t)3);
-        client.set("three", (int32_t)3);
+        client.set("three", 3);
         client.set("three", (int64_t)3);
         client.set("three", (uint8_t)3);
         client.set("three", (uint16_t)3);
@@ -135,9 +135,9 @@ int main(int argc, char **argv) {
 
         mc::result_t res = client.gets("three");
         client.del("txhree");
-        client.cas("txhree", "3", mc::opts_t(0, 0, res.cas));
+        client.cas("txhree", "3", mc::opts_t(std::chrono::seconds(0), 0, res.cas));
         try {
-            client.cas("three", "3", mc::opts_t(0, 0, res.cas - 1));
+            client.cas("three", "3", mc::opts_t(std::chrono::seconds(0), 0, res.cas - 1));
             throw 3;
         } catch (const mc::proto::error_t &e) {
             if (e.code() != mc::proto::resp::exists) throw;

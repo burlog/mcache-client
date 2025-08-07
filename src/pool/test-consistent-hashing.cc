@@ -51,7 +51,7 @@ std::string rand_string() {
     uint32_t length = ::rand() % 26 + 1;
     result.reserve(length);
     for (uint32_t i = 0; i < length; ++i)
-        result.append(1, 'a' + (::rand() % 26));
+        result.append(1, static_cast<char>('a' + (::rand() % 26)));
     return result;
 }
 

@@ -31,6 +31,8 @@ namespace aux {
 #define MCACHE_HAS_MEMBER(MEMBER)                                              \
 template <typename Type_t, typename = void>                                    \
 class has_ ## MEMBER {                                                         \
+public:                                                                        \
+    has_ ## MEMBER() = delete;                                                 \
 private:                                                                       \
     class yes { char m;};                                                      \
     class no { yes m[2];};                                                     \
@@ -46,14 +48,14 @@ private:                                                                       \
      * only Mixin_t::MEMBER is visible and possible because compiler
      * express more specialized methods */                                     \
     template <typename U>                                                      \
-    static no deduce(U *, Detector_t<void (Mixin_t::*)(), &U::MEMBER> * = 0);  \
+    static no deduce(U *, Detector_t<void (Mixin_t::*)(), &U::MEMBER> * = nullptr);  \
     /* fallback for all types which hash MEMBER member and for which
      * Detector_t class can't be instatiate */                                 \
     static yes deduce(...);                                                    \
                                                                                \
 public:                                                                        \
     /* true if &Type_t::MEMBER is valid pointer */                             \
-    enum { value = (sizeof(yes) == sizeof(deduce((Base_t *)(0))))};            \
+    enum { value = (sizeof(yes) == sizeof(deduce(static_cast<Base_t *>(nullptr))))}; \
 };                                                                             \
                                                                                \
 /* Specialization for non-class types that can't contains member... */         \

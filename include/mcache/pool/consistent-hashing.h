@@ -59,24 +59,16 @@ public:
                      const std::vector<std::string> &states) const;
 };
 
-/** Parent type for const iterator of the consistent_hashing_pool_t.
- */
-typedef std::iterator<
-            std::forward_iterator_tag,
-            const consistent_hashing_pool_base_t::value_type
-        > consistent_hashing_pool_const_iterator_parent_t;
-
 /** Const iterator for namespace ring.
  */
-class consistent_hashing_pool_const_iterator
-    : public consistent_hashing_pool_const_iterator_parent_t
-{
+class consistent_hashing_pool_const_iterator {
 public:
     // shortcuts and standard iterators stuff
-    typedef consistent_hashing_pool_const_iterator_parent_t parent_t;
-    typedef parent_t::reference reference;
-    typedef parent_t::pointer pointer;
-    typedef parent_t::value_type value_type;
+    using value_type = const consistent_hashing_pool_base_t::value_type;
+    using difference_type = std::ptrdiff_t;
+    using pointer = const value_type*;
+    using reference = const value_type&;
+    using iterator_category = std::forward_iterator_tag;
     typedef consistent_hashing_pool_base_t::ring_t ring_t;
 
     /** C'tor.

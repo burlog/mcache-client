@@ -237,7 +237,7 @@ delete_command_t::deserialize_header(const std::string &header) const {
     }
 
     // header does not recognized, try global errors
-    return response_t(command_t::deserialize_header(header));
+    return command_t::deserialize_header(header);
 }
 
 std::string delete_command_t::serialize() const {
@@ -262,7 +262,7 @@ flush_all_command_t::deserialize_header(const std::string &header) const {
     }
 
     // there are global errors only
-    return response_t(command_t::deserialize_header(header));
+    return command_t::deserialize_header(header);
 }
 
 std::string flush_all_command_t::serialize() const {
@@ -290,4 +290,3 @@ const char *api::touch_name = "touch";
 } // namespace txt
 } // namespace proto
 } // namespace mc
-
