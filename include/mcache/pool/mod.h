@@ -35,22 +35,16 @@ public:
     typedef uint32_t value_type;
 };
 
-/** Parent type for const iterator of the mod_pool_t.
- */
-typedef std::iterator<
-            std::forward_iterator_tag,
-            const mod_pool_base_t::value_type
-        > mod_pool_const_iterator_parent_t;
-
 /** Const 'iterator' that returns only one entry.
  */
-class mod_pool_const_iterator: public mod_pool_const_iterator_parent_t {
+class mod_pool_const_iterator {
 public:
     // shortcuts and standard iterators stuff
-    typedef mod_pool_const_iterator_parent_t parent_t;
-    typedef parent_t::reference reference;
-    typedef parent_t::pointer pointer;
-    typedef parent_t::value_type value_type;
+    using value_type = const mod_pool_base_t::value_type;
+    using difference_type = std::ptrdiff_t;
+    using pointer = const value_type*;
+    using reference = const value_type&;
+    using iterator_category = std::forward_iterator_tag;
 
     /** C'tor.
      */

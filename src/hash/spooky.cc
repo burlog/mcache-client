@@ -650,9 +650,9 @@ void SpookyHash::Final(uint64 *hash1, uint64 *hash2)
     }
 
     // mix in the last partial block, and the length mod sc_blockSize
-    memset(&((uint8 *)data)[remainder], 0, (sc_blockSize-remainder));
+    memset(&((uint8 *)const_cast<uint64 *>(data))[remainder], 0, (sc_blockSize-remainder));
 
-    ((uint8 *)data)[sc_blockSize-1] = remainder;
+    ((uint8 *)const_cast<uint64 *>(data))[sc_blockSize-1] = remainder;
 
     // do some final mixing
     End(data, h0,h1,h2,h3,h4,h5,h6,h7,h8,h9,h10,h11);

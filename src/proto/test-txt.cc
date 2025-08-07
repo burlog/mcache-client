@@ -478,7 +478,7 @@ bool set_command_exists() {
     std::cout << __PRETTY_FUNCTION__ << ": ";
 
     // prepare request and response
-    api::cas_t command("3", "abc", mc::proto::opts_t(0, 0, 3));
+    api::cas_t command("3", "abc", mc::proto::opts_t(std::chrono::seconds(0), 0, 3));
     const char request[] = "cas 3 0 0 3 3\r\nabc\r\n";
     const char header[] = "EXISTS\r\n";
     validation_connection_t connection(request, header);
@@ -496,7 +496,7 @@ bool set_command_not_found() {
     std::cout << __PRETTY_FUNCTION__ << ": ";
 
     // prepare request and response
-    api::cas_t command("3", "abc", mc::proto::opts_t(0, 0, 3));
+    api::cas_t command("3", "abc", mc::proto::opts_t(std::chrono::seconds(0), 0, 3));
     const char request[] = "cas 3 0 0 3 3\r\nabc\r\n";
     const char header[] = "NOT_FOUND\r\n";
     validation_connection_t connection(request, header);
