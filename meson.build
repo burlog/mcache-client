@@ -1,7 +1,7 @@
 project(
   'libmcache',
   'cpp',
-  version: '1.0.8',
+  version: '1.0.13',
   default_options : [
     'cpp_std=c++17',
     'warning_level=2',
@@ -9,6 +9,11 @@ project(
     'wrap_mode=nofallback',
   ]
 )
+
+add_project_arguments('-DBOOST_ASIO_DISABLE_MOVE', language : 'cpp')
+add_project_arguments('-DBOOST_ASIO_DISABLE_STD_ARRAY', language : 'cpp')
+add_project_arguments('-DBOOST_ASIO_DISABLE_STD_ATOMIC', language : 'cpp')
+add_project_arguments('-DBOOST_ASIO_DISABLE_STD_CHRONO', language : 'cpp')
 
 dependencies = [
   dependency('threads'),
